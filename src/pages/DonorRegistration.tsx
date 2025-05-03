@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -67,6 +68,14 @@ type BloodType =
   | "O-"
   | "";
 
+// This function simulates an API call
+const submitDonorData = async (data: z.infer<typeof formSchema>) => {
+  // Simulate API request delay
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  console.log("Form submitted with data:", data);
+  return data;
+};
+
 const DonorRegistration = () => {
   const [isOrganDonor, setIsOrganDonor] = useState(false);
 
@@ -87,34 +96,27 @@ const DonorRegistration = () => {
     },
   });
 
-  const { mutate: submitDonorRegistration, isLoading: isSubmitting } =
-    useMutation(
-      async (values: z.infer<typeof formSchema>) => {
-        // Simulate an API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        console.log(values);
-        return values;
-      },
-      {
-        onSuccess: () => {
-          toast({
-            title: "Registration successful!",
-            description: "You are now registered as a donor.",
-          });
-          form.reset();
-        },
-        onError: (error: any) => {
-          toast({
-            title: "Something went wrong.",
-            description: error.message,
-            variant: "destructive",
-          });
-        },
-      }
-    );
+  // Fixed useMutation implementation
+  const { mutate, isPending } = useMutation({
+    mutationFn: submitDonorData,
+    onSuccess: () => {
+      toast({
+        title: "Registration successful!",
+        description: "You are now registered as a donor.",
+      });
+      form.reset();
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Something went wrong.",
+        description: error.message,
+        variant: "destructive",
+      });
+    }
+  });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    submitDonorRegistration(values);
+    mutate(values);
   }
 
   return (
@@ -291,6 +293,7 @@ const DonorRegistration = () => {
                       </FormDescription>
                     </div>
                     <Button
+                      type="button"
                       variant="outline"
                       className="w-full"
                       onClick={() => {
@@ -321,8 +324,8 @@ const DonorRegistration = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Submitting..." : "Register"}
+              <Button type="submit" disabled={isPending}>
+                {isPending ? "Submitting..." : "Register"}
               </Button>
             </form>
           </Form>
