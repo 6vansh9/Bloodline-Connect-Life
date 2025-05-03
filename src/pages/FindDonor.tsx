@@ -1,6 +1,7 @@
+
 import { useState } from "react";
 import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "@radix-ui/react-icons";
+import { Calendar as CalendarIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -138,6 +139,7 @@ const FindDonor = () => {
                       date < new Date()
                     }
                     initialFocus
+                    className="p-3 pointer-events-auto"
                   />
                 </PopoverContent>
               </Popover>
