@@ -1,11 +1,21 @@
+
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Droplet } from "lucide-react";
+import { Droplet, LogIn, User } from "lucide-react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Check if user is logged in (this is a simple mock - in a real app, use a proper auth system)
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    navigate("/login");
+  };
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -14,7 +24,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Donate", path: "/donor-registration" },
-    { name: "Find Donors", path: "/find-donor" },
+    { name: "Find Donors", path: "/donor-search" },
     { name: "Eligibility", path: "/eligibility" },
   ];
 
@@ -44,9 +54,25 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="ml-2" variant="default">
-              Login
-            </Button>
+            
+            {isLoggedIn ? (
+              <div className="flex items-center gap-3">
+                <Link to="/profile">
+                  <Button variant="outline" size="sm" className="flex items-center">
+                    <User className="mr-2 h-4 w-4" />
+                    Profile
+                  </Button>
+                </Link>
+                <Button onClick={handleLogout} variant="ghost" size="sm">
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <Button onClick={() => navigate("/login")} className="ml-2" variant="default">
+                <LogIn className="mr-2 h-4 w-4" />
+                Login
+              </Button>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -100,9 +126,35 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button className="w-full mt-2" variant="default">
-              Login
-            </Button>
+            
+            {isLoggedIn ? (
+              <>
+                <Link
+                  to="/profile"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-blood-400"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Profile
+                </Link>
+                <button 
+                  onClick={() => {
+                    handleLogout();
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:bg-gray-50 hover:text-blood-400"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <Link 
+                to="/login"
+                className="block px-3 py-2 rounded-md text-base font-medium bg-blood text-white"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       )}

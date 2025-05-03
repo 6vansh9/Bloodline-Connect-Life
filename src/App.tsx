@@ -8,7 +8,9 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import DonorRegistration from "./pages/DonorRegistration";
 import FindDonor from "./pages/FindDonor";
+import DonorSearch from "./pages/DonorSearch";
 import Eligibility from "./pages/Eligibility";
+import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,7 +26,9 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/donor-registration" element={<DonorRegistration />} />
             <Route path="/find-donor" element={<FindDonor />} />
+            <Route path="/donor-search" element={<DonorSearch />} />
             <Route path="/eligibility" element={<Eligibility />} />
+            <Route path="/login" element={<Login />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
