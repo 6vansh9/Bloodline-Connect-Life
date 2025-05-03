@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Drop } from "lucide-react";
+import { Droplet } from "lucide-react";
 
 const HeroBanner = () => {
   return (
@@ -54,7 +53,7 @@ const HeroBanner = () => {
                 />
                 <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
                   <div className="flex items-center space-x-2">
-                    <Drop className="h-8 w-8 text-blood animate-pulse" />
+                    <Droplet className="h-8 w-8 text-blood animate-pulse" />
                     <div>
                       <p className="text-xs text-gray-500">Total donations this month</p>
                       <p className="text-xl font-bold">1,249</p>

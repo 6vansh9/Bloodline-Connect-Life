@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { Drop, Heart, Mail, MapPin } from "lucide-react";
+import { Droplet, Heart, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -9,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1">
             <Link to="/" className="flex items-center">
-              <Drop className="h-8 w-8 text-blood" />
+              <Droplet className="h-8 w-8 text-blood" />
               <span className="ml-2 text-xl font-display font-bold text-gray-900">
                 BloodlineConnect
               </span>

@@ -1,5 +1,4 @@
-
-import { Heart, Drop, Users } from "lucide-react";
+import { Heart, Droplet, Users } from "lucide-react";
 
 const StatisticsBanner = () => {
   const stats = [
@@ -21,7 +20,7 @@ const StatisticsBanner = () => {
       id: 3,
       label: "Donations Made",
       value: "45,800+",
-      icon: <Drop className="h-6 w-6 text-blood" />,
+      icon: <Droplet className="h-6 w-6 text-blood" />,
       description: "Blood, plasma, and organs"
     }
   ];

@@ -1,6 +1,5 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Drop, Heart } from "lucide-react";
+import { Droplet, Heart } from "lucide-react";
 
 const bloodTypes = [
   { type: "A+", canDonateTo: "A+, AB+", canReceiveFrom: "A+, A-, O+, O-", percent: "35.7%" },
@@ -37,7 +36,7 @@ const DonationTypes = () => {
           {/* Blood Types */}
           <div>
             <div className="flex items-center mb-6">
-              <Drop className="h-6 w-6 text-blood mr-2" />
+              <Droplet className="h-6 w-6 text-blood mr-2" />
               <h3 className="text-2xl font-bold text-gray-900">Blood Types</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">

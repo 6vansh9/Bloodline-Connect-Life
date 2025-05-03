@@ -1,8 +1,7 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Drop } from "lucide-react";
+import { Droplet } from "lucide-react";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,7 +24,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <Drop className="h-8 w-8 text-blood" />
+              <Droplet className="h-8 w-8 text-blood" />
               <span className="ml-2 text-xl font-display font-bold text-gray-900">BloodlineConnect</span>
             </Link>
           </div>
